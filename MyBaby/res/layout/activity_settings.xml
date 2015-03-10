@@ -1,0 +1,250 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mybaby_background" >
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/mybaby_titlebar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/mybaby_titlebar_background" >
+
+        <ImageView
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/mybaby_titlebar_icon_padding"
+            android:src="@drawable/backbutton" />
+
+        <com.canace.mybaby.view.MyTitleTextView
+            android:id="@+id/text_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dip"
+            android:text="@string/settings"
+            android:textColor="@color/mybaby_default_color"
+            android:textSize="@dimen/mybaby_titlebar_textsize" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_title" >
+        <include layout="@layout/line_shadow" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/line"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="10dip"
+        android:scrollbarStyle="outsideInset" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/layout_personal"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_alignParentTop="true"
+                android:background="#ffffff" >
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:id="@+id/personal1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/account_management"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:id="@+id/personal2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/personal1"
+                    android:layout_marginBottom="10dip"
+                    android:layout_marginLeft="10dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/account_management_description"
+                    android:textColor="@color/mybaby_text_hint"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/arrow_personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/arrow_right" />
+
+                <ImageView
+                    android:id="@+id/img_personal"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toLeftOf="@id/arrow_personal" />
+            </RelativeLayout>
+            
+            
+            <RelativeLayout
+                android:id="@+id/smartmode_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_below="@id/layout_personal"
+                android:layout_marginTop="20dip"
+                android:background="#ffffff" >
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:id="@+id/display1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:text="@string/smart_mode"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:id="@+id/display2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/display1"
+                    android:layout_marginBottom="10dip"
+                    android:layout_marginLeft="10dip"
+                    android:text="@string/smart_mode_description"
+                    android:textColor="@color/mybaby_text_hint"
+                    android:textSize="13sp" />
+
+                <ToggleButton
+                    android:id="@+id/smart_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:background="@drawable/on"
+                    android:checked="true"
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/aboutsetting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_below="@id/smartmode_layout"
+                android:layout_marginTop="20dip"
+                android:background="#ffffff" >
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:text="@string/about_title"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/arrow_right" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/checksetting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_below="@id/aboutsetting"
+                android:layout_marginTop="2dip"
+                android:background="#ffffff" >
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:text="@string/check_update"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/arrow_right" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/feedbacksetting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_below="@id/checksetting"
+                android:layout_marginTop="2dip"
+                android:background="#ffffff" >
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:text="@string/feedback"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/arrow_right" />
+            </RelativeLayout>
+            <!--
+                 <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:layout_below="@id/feedbacksetting"
+                android:background="#20000000" />
+            -->
+
+            <Button
+                android:id="@+id/logoutsetting"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/feedbacksetting"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/button_background"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

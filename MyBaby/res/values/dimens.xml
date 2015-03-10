@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="mybaby_titlebar_height">50dp</dimen>
+    <dimen name="mybaby_titlebar_icon_padding">10dp</dimen>
+    <dimen name="mybaby_titlebar_textsize">22sp</dimen>
+    <dimen name="news_title_textsize">18sp</dimen>
+    <dimen name="mybaby_actitude_text_size">11sp</dimen>
+    <dimen name="news_content_textsize">16sp</dimen>
+    <dimen name="news_saying_textsize">16sp</dimen>
+    <dimen name="news_summary_textsize">16sp</dimen>
+    <dimen name="list_top_title_textsize">18sp</dimen>
+    <dimen name="list_news_title_textsize">17sp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="body_padding_medium">10dp</dimen>
+    <dimen name="body_padding_large">10dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">18sp</dimen>
+    <dimen name="speaker_image_size">36dp</dimen>
+    <dimen name="speaker_image_padding">8dp</dimen>
+    <dimen name="vendor_image_size">100dp</dimen>
+    <dimen name="pager_margin">10dp</dimen>
+    <dimen name="page_margin">5dp</dimen>
+    <dimen name="mybaby_content_linespacing">7dip</dimen>
+    <dimen name="mybaby_text_publish_info">12sp</dimen>
+    <dimen name="actionbar_height">45dip</dimen>
+    <dimen name="actionbar_item_height">45dip</dimen>
+    <dimen name="actionbar_item_width">45dip</dimen>
+
+</resources>

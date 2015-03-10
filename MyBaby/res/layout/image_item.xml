@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/image_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/mybaby_category_item_edge" >
+
+        <ImageView
+            android:id="@+id/category_image"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_pic" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:visibility="invisible">
+
+        <com.canace.mybaby.view.MyTitleTextView
+            android:id="@+id/category_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="3dip"
+            android:paddingTop="3dip"
+            android:paddingLeft="10dip"
+            android:paddingBottom="1dip"
+            android:shadowColor="#000000"
+            android:shadowDx="2.0"
+            android:shadowDy="1.0"
+            android:shadowRadius="1.0"
+            android:background="@color/mybaby_text_background"
+            android:textColor="@color/mybaby_text_big_title"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</FrameLayout>

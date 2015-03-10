@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mybaby_background" >
+
+    <RelativeLayout
+        android:id="@+id/titlebar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/mybaby_titlebar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/mybaby_titlebar_background" >
+
+        <ImageView
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/mybaby_titlebar_icon_padding"
+            android:src="@drawable/backbutton" />
+
+        <com.canace.mybaby.view.MyTitleTextView
+            android:id="@+id/text_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dip"
+            android:text="@string/about_title"
+            android:textColor="@color/mybaby_default_color"
+            android:textSize="@dimen/mybaby_titlebar_textsize" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlebar" >
+        <include layout="@layout/line_shadow" />
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/about_content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/logo_version"
+                android:layout_width="fill_parent"
+                android:layout_height="200dip"
+                android:layout_alignParentTop="true" >
+
+                <ImageView
+                    android:id="@+id/about_logo"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/logo_icon" />
+
+                <com.canace.mybaby.view.MyContentTextView
+                    android:id="@+id/version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_logo"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/mybaby_text_hint" />
+            </RelativeLayout>
+
+            <com.canace.mybaby.view.MyContentTextView
+                android:id="@+id/text_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logo_version"
+                android:layout_margin="10dip"
+                android:background="#ffffff"
+                android:lineSpacingExtra="2dip"
+                android:gravity="top"
+                android:padding="15dp"
+                android:textSize="15sp" />
+
+            <com.canace.mybaby.view.MyContentTextView
+                android:id="@+id/slogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_avatar"
+                android:layout_centerHorizontal="true"
+                android:text="@string/slogan"
+                android:textColor="@color/mybaby_text_hint" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

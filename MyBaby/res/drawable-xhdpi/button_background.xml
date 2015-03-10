@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+  <!-- <gradient
+      android:startColor = "#f7f7f7"
+      android:centerColor="#f7f7f7"
+      android:endColor = "#F1592A"  
+      android:angle = "270"/>  -->
+      <solid
+          android:color="@color/mybaby_default_color"/>
+  <corners 
+      android:radius="6dip"/>
+  
+</shape>

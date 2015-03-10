@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="3dip" >
+
+    <ImageView
+        android:layout_alignParentTop="true"
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:background="@color/mybaby_titlebar_line"
+        android:layout_height="1dip" />
+    <ImageView
+        android:id="@+id/shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:layout_below="@id/line"
+        android:background="@drawable/module_shadow" />
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+RESPONSE JSON:
+{
+  "face": [
+    {
+      "attribute": {
+        "age": {
+          "range": 5,
+          "value": 24
+        },
+        "gender": {
+          "confidence": 99.9999,
+          "value": "Female"
+        },
+        "glass": {
+          "confidence": 99.4157,
+          "value": "None"
+        },
+        "pose": {
+          "pitch_angle": {
+            "value": 0.000001
+          },
+          "roll_angle": {
+            "value": 0.650337
+          },
+          "yaw_angle": {
+            "value": -0.42409
+          }
+        },
+        "race": {
+          "confidence": 98.058,
+          "value": "Asian"
+        },
+        "smiling": {
+          "value": 3.78394
+        }
+      },
+      "face_id": "d6b89b22857433f0d665eceb09703019",
+      "position": {
+        "center": {
+          "x": 50.121951,
+          "y": 35.97561
+        },
+        "eye_left": {
+          "x": 43.465122,
+          "y": 30.670488
+        },
+        "eye_right": {
+          "x": 56.80878,
+          "y": 30.821951
+        },
+        "height": 27.560976,
+        "mouth_left": {
+          "x": 45.649512,
+          "y": 45.041707
+        },
+        "mouth_right": {
+          "x": 55.134878,
+          "y": 44.858049
+        },
+        "nose": {
+          "x": 50.183415,
+          "y": 38.410732
+        },
+        "width": 27.560976
+      },
+      "tag": ""
+    }
+  ],
+  "img_height": 410,
+  "img_id": "217acd5d25dd6ab460d64ca0a4831dfd",
+  "img_width": 410,
+  "session_id": "26085ae01db1487cac80692544729b66",
+  "url": "http://www.faceplusplus.com.cn/wp-content/themes/faceplusplus/assets/img/demo/1.jpg?v=2"
+}

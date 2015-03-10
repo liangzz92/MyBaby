@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="tag_list_top" type="id"></item>
+    <item name="tag_list_category" type="id"></item>
+    <item name="tag_list_item_rising" type="id"></item>
+    <item name="tag_list_item_hot" type="id"></item>
+    <item name="tag_list_item_followed" type="id"></item>
+    <item name="tag_list_item_followed_item" type="id"></item>
+    <item name="tag_category_item" type="id"></item>
+	
+</resources>
