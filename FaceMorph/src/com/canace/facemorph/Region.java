@@ -1,4 +1,6 @@
-import org.opencv.core.Point;
+package com.canace.facemorph;
+
+import java.awt.Point;
 
 /**
  * @author liangzz
@@ -20,7 +22,7 @@ public abstract class Region {
 		return region_type;
 	}
 
-	public abstract boolean isInRegion(Point point);
+	public abstract boolean isInRegion(java.awt.Point point);
 
 	public abstract Point transformation(Point p, Region DEF);
 

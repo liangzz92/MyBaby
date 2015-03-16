@@ -1,6 +1,7 @@
-import java.awt.Polygon;
+package com.canace.facemorph;
 
-import org.opencv.core.Point;
+import java.awt.Point;
+import java.awt.Polygon;
 
 /**
  * @author liangzz
@@ -72,10 +73,10 @@ public class Quadrangular extends Region {
 			u = 0;
 			v = 0;
 		}
-		q.x = (1 - u) * (1 - v) * points[0].x + u * (1 - v) * points[1].x + u
-				* v * points[2].x + (1 - u) * v * points[3].x;
-		q.y = (1 - u) * (1 - v) * points[0].y + u * (1 - v) * points[1].y + u
-				* v * points[2].y + (1 - u) * v * points[3].y;
+		q.x = (int) ((1 - u) * (1 - v) * points[0].x + u * (1 - v)
+				* points[1].x + u * v * points[2].x + (1 - u) * v * points[3].x);
+		q.y = (int) ((1 - u) * (1 - v) * points[0].y + u * (1 - v)
+				* points[1].y + u * v * points[2].y + (1 - u) * v * points[3].y);
 		return q;
 	}
 }
