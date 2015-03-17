@@ -1,15 +1,22 @@
 package com.canace.facemorph;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.highgui.Highgui;
 
+import com.ding.cv.utility.MyImage;
+
 public class FaceMorph {
 
 	static int[] trycounts = new int[22];
+	private static String outputDir = "result-test-3";
+	static int width;
+	static int height;
 
 	public static void main(String[] args) {
 
@@ -21,10 +28,18 @@ public class FaceMorph {
 				new Point(294, 315), new Point(281, 414), new Point(438, 97),
 				new Point(433, 198), new Point(427, 291), new Point(418, 388),
 				new Point(508, 213), new Point(508, 279) };
+		// points[0] = new Point[] { new Point(73, 316), new Point(172, 308),
+		// new Point(315, 294), new Point(414, 281), new Point(97, 438),
+		// new Point(198, 433), new Point(291, 427), new Point(388, 418),
+		// new Point(213, 508), new Point(279, 508) };
 		points[1] = new Point[] { new Point(274, 119), new Point(283, 213),
 				new Point(288, 387), new Point(296, 473), new Point(434, 116),
 				new Point(442, 230), new Point(448, 343), new Point(448, 437),
 				new Point(536, 236), new Point(539, 313) };
+		// points[1] = new Point[] { new Point(119, 274), new Point(213, 283),
+		// new Point(387, 288), new Point(473, 296), new Point(116, 434),
+		// new Point(230, 442), new Point(343, 448), new Point(437, 448),
+		// new Point(236, 536), new Point(313, 539) };
 		// points[0] = new Point[] { new Point(92, 78), new Point(92, 98),
 		// new Point(94, 140), new Point(94, 163), new Point(141, 84),
 		// new Point(140, 100), new Point(140, 132), new Point(140, 150),
@@ -37,19 +52,42 @@ public class FaceMorph {
 																// "test/2.png"
 																// };
 
-		Mat sourceMat, dstMat, resultMat, tmp_srcMat, tmp_dstMat;
+		MyImage sourceMat, dstMat;
+		Mat resultMat;
 		PartitionedImage srcPartitionedImage, dstPartitionedImage, tmpPartitionedImage = null;
+
 		for (int i = 0; i < pathStrings.length - 1; i++) {
-			sourceMat = Highgui.imread(pathStrings[i], 1);
-			dstMat = Highgui.imread(pathStrings[i + 1], 1);
-			resultMat = Mat.zeros(sourceMat.size(), CvType.CV_8UC3);
-			tmp_srcMat = Mat.zeros(sourceMat.size(), CvType.CV_8UC3);
-			tmp_dstMat = Mat.zeros(sourceMat.size(), CvType.CV_8UC3);
-			srcPartitionedImage = new PartitionedImage(points[i], false,
-					sourceMat);
+			sourceMat = new MyImage();
+			dstMat = new MyImage();
+			try {
+				sourceMat.loadFromFile(new File(pathStrings[i]));
+				dstMat.loadFromFile(new File(pathStrings[i + 1]));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			short[][][] src_rgb = sourceMat.getColorLattice();
+			short[][][] dst_rgb = dstMat.getColorLattice();
+			short[][][] result_rgb = src_rgb.clone();
+
+			width = src_rgb[0][0].length;
+			height = src_rgb[0].length;
+
+			// for(int channel=0;channel<rgb1.length;channel++){
+			// for(int row=0;row<rgb1[0].length;row++){
+			// for(int col=0;col<rgb1[0][0].length;col++){
+			// rgbOutput[channel][row][col]=(short)
+			// (rgb1[channel][row][col]+(rgb2[channel][row][col]-rgb1[channel][row][col])*i*step);
+			// }
+			// }
+			// }
+
+			srcPartitionedImage = new PartitionedImage(points[i], false, width,
+					height);
 			Triangular[] srcRegions = srcPartitionedImage.getRegions();
 			dstPartitionedImage = new PartitionedImage(points[i + 1], false,
-					dstMat);
+					width, height);
 			Triangular[] dstRegions = dstPartitionedImage.getRegions();
 			Triangular[] tmpRegions;
 			int alpha = 0;
@@ -61,14 +99,15 @@ public class FaceMorph {
 						(double) alpha / 100, points[i], points[i + 1]);
 				if (alpha == 0) {
 					tmpPartitionedImage = new PartitionedImage(tmpPoints, true,
-							sourceMat);
+							width, height);
 					tmpRegions = tmpPartitionedImage.getRegions();
 				} else {
 					tmpPartitionedImage.setFeaturePoints(tmpPoints);
 					tmpRegions = tmpPartitionedImage.getRegions();
 				}
-				t = (Core.getTickCount() - t) / Core.getTickFrequency();
-				System.out.println("getRegions Times passed in seconds: " + t);
+				// t = (Core.getTickCount() - t) / Core.getTickFrequency();
+				// System.out.println("getRegions Times passed in seconds: " +
+				// t);
 				// t = Core.getTickCount();
 				// Triangular[] tmpRegions = getRegions(sourceMat, tmpPoints,
 				// true);
@@ -81,28 +120,119 @@ public class FaceMorph {
 
 				// colorMorph(resultMat, sourceMat, dstMat, (double) alpha /
 				// 100);
-				affineTransform(tmp_srcMat, tmp_dstMat, resultMat, sourceMat,
-						srcRegions, dstMat, dstRegions, (double) alpha / 100,
-						tmpRegions);
+				affineTransform(result_rgb, src_rgb, srcRegions, dst_rgb,
+						dstRegions, (double) alpha / 100, tmpRegions);
+
+				String fileName = String.format("%s/%d.jpg", outputDir, alpha);
+				MyImage.writeImage(result_rgb, fileName);
+
+				resultMat = Highgui.imread(fileName);
+
 				imshow.showImage(resultMat);
 
-				// tmp_srcMat.release();
-				// tmp_dstMat.release();
-				// tmpMat2.release();
-
+				// BufferedImage resultImage = new BufferedImage(width, height,
+				// BufferedImage.TYPE_INT_RGB);
+				//
 				alpha += delta;
 
 				t = (Core.getTickCount() - t) / Core.getTickFrequency();
 				System.out.println("Times passed in seconds: " + t);
 			}
-			sourceMat.release();
-			dstMat.release();
+
 		}
 		time = (Core.getTickCount() - time) / Core.getTickFrequency();
 		System.out.println("Times passed in seconds: " + time);
 		for (int i = 21; i >= 0; i--) {
 			System.out.println((21 - i + 1) + " trycount:" + trycounts[i]);
 		}
+	}
+
+	private static void affineTransform(short[][][] result_rgb,
+			short[][][] src_rgb, Triangular[] srcRegions, short[][][] dst_rgb,
+			Triangular[] dstRegions, double alpha, Triangular[] tmpRegions) {
+		// TODO Auto-generated method stub
+		// double t = Core.getTickCount();
+		int last_region_index = 0;
+		// double[] new_point = new double[3];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				// double t = Core.getTickCount();
+
+				Point point = new Point(i, j);
+				int try_count = tmpRegions.length - 1;
+				while (try_count >= 0) {
+					if (tmpRegions[last_region_index].isInRegion(point)) {
+
+						// Point src_originPoint = new Point();
+						// Point dst_originPoint = new Point();
+
+						Point src_originPoint = tmpRegions[last_region_index]
+								.transformation(point,
+										srcRegions[last_region_index]);
+
+						src_originPoint.x = Math.min(height - 1,
+								src_originPoint.x);
+						src_originPoint.y = Math.min(width - 1,
+								src_originPoint.y);
+						// System.out.println("x:" + src_originPoint.x +
+						// " y:"
+						// + src_originPoint.y);
+						Point dst_originPoint = tmpRegions[last_region_index]
+								.transformation(point,
+										dstRegions[last_region_index]);
+
+						dst_originPoint.x = Math.min(height - 1,
+								dst_originPoint.x);
+						dst_originPoint.y = Math.min(width - 1,
+								dst_originPoint.y);
+						// System.out.println("x:" + dst_originPoint.x +
+						// " y:"
+						// + dst_originPoint.y);
+						// double t = Core.getTickCount();
+						// for (int k = 0; k < 288000; k++) {
+						for (int channel = 0; channel < src_rgb.length; channel++) {
+							short tmp = (short) (src_rgb[channel][src_originPoint.x][src_originPoint.y]
+									* (1 - alpha) + dst_rgb[channel][dst_originPoint.x][dst_originPoint.y]
+									* alpha);
+							result_rgb[channel][i][j] = tmp;
+						}
+						// double[] src_point = sourceMat.get(
+						// src_originPoint.x, src_originPoint.y);
+						// double[] dst_point =
+						// dstMat.get(dst_originPoint.x,
+						// dst_originPoint.y);
+						// mergePoints(new_point, alpha, src_point,
+						// dst_point);
+						// }
+						// t = (Core.getTickCount() - t) /
+						// Core.getTickFrequency();
+						// System.out
+						// .println("calculate  points Times passed in seconds: "
+						// + t);
+						// mergePoints(new_point, alpha, src_point, dst_point);
+						// double time = Core.getTickCount();
+						// for (int k = 0; k < 288000; k++) {
+						// mergePoints(new_point, alpha, src_point, dst_point);
+						// resultMat.put(i, j, new_point);
+						// }
+
+						// time = (Core.getTickCount() - time)
+						// / Core.getTickFrequency();
+						// System.out.println("put Times passed in seconds: "
+						// + time);
+						trycounts[try_count]++;
+
+						break;
+					} else {
+						last_region_index = (last_region_index + 1)
+								% dstRegions.length;
+					}
+
+					try_count--;
+				}
+			}
+		}
+
 	}
 
 	private static void affineTransform(Mat resultMat, Mat sourceMat,

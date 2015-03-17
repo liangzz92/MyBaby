@@ -8,8 +8,6 @@ package com.canace.facemorph;
 
 import java.awt.Point;
 
-import org.opencv.core.Mat;
-
 public class PartitionedImage {
 
 	Triangular[] regions;
@@ -20,13 +18,13 @@ public class PartitionedImage {
 	Point l_bottomPoint;
 
 	public PartitionedImage(java.awt.Point[] tmpPoints, boolean needCalculated,
-			Mat sourceMat) {
+			int width, int height) {
 		// double t = Core.getTickCount();
 
 		l_topPoint = new Point(0, 0);
-		r_topPoint = new Point(0, sourceMat.cols() - 1);
-		r_bottomPoint = new Point(sourceMat.rows() - 1, sourceMat.cols() - 1);
-		l_bottomPoint = new Point(sourceMat.rows() - 1, 0);
+		r_topPoint = new Point(0, width - 1);
+		r_bottomPoint = new Point(height - 1, width - 1);
+		l_bottomPoint = new Point(height - 1, 0);
 		this.featurePoints = tmpPoints;
 		regions = new Triangular[22];
 		regions[0] = new Triangular(l_topPoint, r_topPoint, tmpPoints[1],

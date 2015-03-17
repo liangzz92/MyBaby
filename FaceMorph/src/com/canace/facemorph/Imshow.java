@@ -1,20 +1,21 @@
 package com.canace.facemorph;
+
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
-//import java.io.ByteArrayInputStream;
-//import java.io.InputStream;
-//import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-//import javax.swing.plaf.ButtonUI;
 import javax.swing.WindowConstants;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+//import java.io.ByteArrayInputStream;
+//import java.io.InputStream;
+//import javax.imageio.ImageIO;
+//import javax.swing.plaf.ButtonUI;
 
 public class Imshow {
 
@@ -75,6 +76,21 @@ public class Imshow {
 		}
 	}
 
+	public void showImage(BufferedImage img) {
+
+		try {
+			// InputStream in = new ByteArrayInputStream(byteArray);
+			// bufImage = ImageIO.read(in);
+
+			image.setImage(img);
+			Window.pack();
+			label.updateUI();
+			Window.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	// CREDITS TO DANIEL: http://danielbaggio.blogspot.com.br/ for the improved
 	// version !
 
@@ -123,9 +139,8 @@ public class Imshow {
 		Window.setResizable(resizable);
 	}
 
-
-	// Thanks to Jan Monterrubio for additional static methods for viewing images. 
-
+	// Thanks to Jan Monterrubio for additional static methods for viewing
+	// images.
 
 	/**
 	 * Displays the given {@link Mat} in a new instance of {@link Imshow}
